@@ -1,0 +1,74 @@
+<div  style="position: absolute; top: 500px; left: 100px;">
+    devツール開いて、サメをdrag & drop
+<img id="$img" src="same.png" width="40" height="40">
+</div>
+
+
+<p style="margin-top: 200px;" id="output">Waiting on scroll events...</p>
+<div
+  id="scroll-box"
+  style="overflow: scroll; height: 200px; width: 100px; margin-right:400px; float: left;">
+  <p style="height: 200px; width: 200px;">Scroll me!</p>
+  サメ〜
+  <img src="same.png" width="40" height="40">
+</div>
+
+
+
+
+<div></div>
+
+<!-- https://jp-seemore.com/web/4526/ -->
+ <p>Click！</p>
+<img id="sampleImage" src="same.png" width="80" height="80" alt="サンプル画像" onclick="zoomImage()">
+
+<style>
+    /* CSS */
+    #sampleImage.zoomed {
+      transform: scale(2);
+      transition: transform 0.3s;
+    }
+    #sampleImage {
+    }
+</style>
+
+
+
+<script>
+// https://qiita.com/www-tacos/items/5614b61d3742d6db34b7
+$img.onpointermove = function(event){
+    if(event.buttons){
+        this.style.left     = this.offsetLeft + event.movementX + 'px'
+        this.style.top      = this.offsetTop  + event.movementY + 'px'
+        this.style.position = 'absolute'
+        this.draggable      = false
+        this.setPointerCapture(event.pointerId)
+    }
+}
+
+// https://developer.mozilla.org/ja/docs/Web/API/Element/pointerup_event
+$img.onpointerup = function(event){
+    // this.releasePointerCapture(event.pointerId)
+    console.log('pointerup')
+}
+
+// https://developer.mozilla.org/ja/docs/Web/API/Element/scroll_event
+const element = document.querySelector("div#scroll-box");
+const output = document.querySelector("p#output");
+
+element.addEventListener("scroll", (event) => {
+  output.innerHTML = "Scroll event fired!";
+  setTimeout(() => {
+    output.innerHTML = "Waiting on scroll events...";
+  }, 3000);
+});
+
+
+
+
+function zoomImage() {
+    const image = document.getElementById('sampleImage');
+    image.classList.toggle('zoomed');
+  }
+
+</script>   
