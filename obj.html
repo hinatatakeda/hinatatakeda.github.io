@@ -11,7 +11,7 @@
 
 <div  style="position: absolute; top: 500px; left: 100px;">
     devツール開いて、サメをdrag & drop
-<img id="$img" src="./src/same.png" width="40" height="40">
+<img id="img" src="./src/same.png" width="40" height="40">
 </div>
 
 
@@ -49,7 +49,7 @@
 
 <script>
 // https://qiita.com/www-tacos/items/5614b61d3742d6db34b7
-$img.onpointermove = function(event){
+img.onpointermove = function(event){
     if(event.buttons){
         this.style.left     = this.offsetLeft + event.movementX + 'px'
         this.style.top      = this.offsetTop  + event.movementY + 'px'
@@ -60,7 +60,7 @@ $img.onpointermove = function(event){
 }
 
 // https://developer.mozilla.org/ja/docs/Web/API/Element/pointerup_event
-$img.onpointerup = function(event){
+img.onpointerup = function(event){
     // this.releasePointerCapture(event.pointerId)
     console.log('pointerup')
 }
